@@ -1,0 +1,10 @@
+[gd_resource type="Terrain3DTextureAsset" load_steps=3 format=3 uid="uid://bgwrkfhgavjyn"]
+
+[ext_resource type="Texture2D" uid="uid://cm11iwkl2liaq" path="res://textures/env-textures/snow_01_4k/snow_01_diff_4k.png" id="1_qq6ye"]
+[ext_resource type="Texture2D" uid="uid://yrhcmhd1brcp" path="res://textures/env-textures/snow_01_4k/snow_01_nor_gl_4k.png" id="2_smf56"]
+
+[resource]
+name = "snow_01_diff_4k"
+id = 1
+albedo_texture = ExtResource("1_qq6ye")
+normal_texture = ExtResource("2_smf56")

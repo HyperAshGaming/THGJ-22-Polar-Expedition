@@ -7,11 +7,13 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
 [sub_resource type="Environment" id="Environment_3vyb7"]
-fog_light_color = Color(0.79012936, 0.8111249, 0.8437929, 1)
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 13.98
 fog_sun_scatter = 0.5
-fog_density = 0.02
 fog_sky_affect = 0.7
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.2
+volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -34,6 +36,5 @@ distance_fade_enabled = true
 distance_fade_begin = 10.0
 distance_fade_shadow = 20.0
 distance_fade_length = 5.0
-spot_range = 2.0
 spot_angle = 30.0
 spot_angle_attenuation = 1.8660665

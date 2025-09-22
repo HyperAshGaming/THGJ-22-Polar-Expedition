@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://7of1ajkbel50"]
+[gd_scene load_steps=26 format=3 uid="uid://7of1ajkbel50"]
 
+[ext_resource type="Material" uid="uid://e3nh0g43140k" path="res://textures/env-textures/snow_01_4k/snow_01.tres" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dhokvwfnxqt33" path="res://scenes/player.tscn" id="1_ig7tw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
-albedo_color = Color(0.6431373, 0, 0.6431373, 1)
+[ext_resource type="Material" uid="uid://rf56gq2tmit0" path="res://textures/env-textures/snow_03_4k/snow_03.tres" id="1_jyhfs"]
+[ext_resource type="Material" uid="uid://dpssfiwafk77v" path="res://textures/env-textures/snow_02_4k/snow_02.tres" id="3_tbgi4"]
+[ext_resource type="Terrain3DTextureAsset" uid="uid://bgwrkfhgavjyn" path="res://textures/env-textures/snow_01_4k/terrain_3d_snow_01.tres" id="5_tefeu"]
+[ext_resource type="Terrain3DTextureAsset" uid="uid://b5otscwsdxrfw" path="res://textures/env-textures/snow_02_4k/terrain_3d_snow_02.tres" id="6_o6xl0"]
+[ext_resource type="Terrain3DTextureAsset" uid="uid://dhkhddq6ihtrm" path="res://textures/env-textures/snow_03_4k/terrain_3d_snow_03.tres" id="7_o6xl0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 size = Vector3(100, 0.1, 100)
@@ -62,10 +65,74 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_85g3d"]
 material = SubResource("StandardMaterial3D_tipki")
 
+[sub_resource type="Gradient" id="Gradient_tipki"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_85g3d"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_choun"]
+noise = SubResource("FastNoiseLite_85g3d")
+color_ramp = SubResource("Gradient_tipki")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_ya4ey"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_choun"),
+&"projection_threshold": 0.8
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb6dy"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_trceg"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_eb6dy")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_a8y0u"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_trceg")])
+texture_list = Array[Terrain3DTextureAsset]([ExtResource("5_tefeu"), ExtResource("6_o6xl0"), ExtResource("7_o6xl0")])
+
 [node name="Main" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_0xm2m")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 110.4, 0)
+material_override = ExtResource("1_jyhfs")
 mesh = SubResource("BoxMesh_h2yge")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -73,8 +140,28 @@ mesh = SubResource("BoxMesh_h2yge")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_o5qli")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.222196e-08, -0.9659258, -0.25881904, 1, -4.371139e-08, 0, -1.131334e-08, -0.25881904, 0.9659258, 39.300003, 110.4, 0)
+material_override = ExtResource("1_0wfyh")
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_o5qli")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.090862e-08, 0.70710677, -0.7071068, 1, -4.371139e-08, 0, -3.090862e-08, -0.7071068, -0.70710677, -16.099998, 110.4, 43.7)
+material_override = ExtResource("3_tbgi4")
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_o5qli")
+
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.500004, 0)
 
 [node name="Snow" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.4, 0)
@@ -86,4 +173,14 @@ draw_pass_1 = SubResource("QuadMesh_85g3d")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -2.3999999)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.25881904, 0.9659258, 0, -0.9659258, -0.25881904, 0, 0, 0)
 visible = false
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://terrain-3d-data-dir"
+material = SubResource("Terrain3DMaterial_ya4ey")
+assets = SubResource("Terrain3DAssets_a8y0u")
+top_level = true
+metadata/_edit_lock_ = true
