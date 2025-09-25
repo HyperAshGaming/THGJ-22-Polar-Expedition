@@ -11,7 +11,6 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_light_energy = 13.98
 fog_sun_scatter = 0.5
 fog_sky_affect = 0.7
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.2
 volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
 

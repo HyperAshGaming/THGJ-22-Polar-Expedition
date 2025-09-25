@@ -15,6 +15,10 @@ run/main_scene="uid://7of1ajkbel50"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="Themed Horror Game Jam 22 Polar Expedition"
