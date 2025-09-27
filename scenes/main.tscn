@@ -1,8 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://7of1ajkbel50"]
+[gd_scene load_steps=28 format=3 uid="uid://7of1ajkbel50"]
 
 [ext_resource type="PackedScene" uid="uid://dhokvwfnxqt33" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cm11iwkl2liaq" path="res://textures/env-textures/snow_01_4k/snow_01_diff_4k.png" id="5_o6xl0"]
 [ext_resource type="Terrain3DTextureAsset" uid="uid://bgwrkfhgavjyn" path="res://textures/env-textures/snow_01_4k/terrain_3d_snow_01.tres" id="5_tefeu"]
 [ext_resource type="Terrain3DTextureAsset" uid="uid://b5otscwsdxrfw" path="res://textures/env-textures/snow_02_4k/terrain_3d_snow_02.tres" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://yrhcmhd1brcp" path="res://textures/env-textures/snow_01_4k/snow_01_nor_gl_4k.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://didicxp3m4mtk" path="res://textures/env-textures/snow_01_4k/snow_01_rough_4k.png" id="7_85g3d"]
 [ext_resource type="Terrain3DTextureAsset" uid="uid://dhkhddq6ihtrm" path="res://textures/env-textures/snow_03_4k/terrain_3d_snow_03.tres" id="7_o6xl0"]
 
 [sub_resource type="Gradient" id="Gradient_o5qli"]
@@ -669,21 +672,42 @@ lod0_range = 128.0
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_trceg")])
 texture_list = Array[Terrain3DTextureAsset]([ExtResource("6_o6xl0"), ExtResource("5_tefeu"), ExtResource("7_o6xl0")])
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.7490196)
+albedo_texture = ExtResource("5_o6xl0")
+albedo_texture_force_srgb = true
+roughness = 0.0
+roughness_texture = ExtResource("7_85g3d")
+normal_enabled = true
+normal_texture = ExtResource("6_tipki")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tefeu"]
+material = SubResource("StandardMaterial3D_choun")
+top_radius = 100.0
+bottom_radius = 100.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ya4ey"]
+points = PackedVector3Array(19.028978, 3.7619047, 101.56742, -19.028978, -2.5873013, -101.56742, -31.734848, -2.5873013, -98.38599, -19.028978, 3.7619047, -101.56742, 101.56742, -2.5873013, -19.028978, -88.86155, -2.5873013, 53.945267, -101.56742, 3.7619047, -19.028978, 88.86155, 3.7619047, -53.945267, 63.469696, -2.5873013, 82.51856, 95.204544, 3.7619047, 41.25928, -82.51856, 3.7619047, 63.469696, -31.734848, -2.5873013, 98.38599, -88.86155, -2.5873013, -53.945267, 53.945267, -2.5873013, -88.86155, -63.469696, 3.7619047, -82.51856, 31.734848, 3.7619047, -98.38599, -101.56742, -2.5873013, 19.028978, -53.945267, 3.7619047, 88.86155, 95.204544, -2.5873013, 41.25928, 63.469696, 3.7619047, 82.51856, 19.028978, -2.5873013, 101.56742, 101.56742, 3.7619047, 19.028978, -98.38599, 3.7619047, 31.734848, 82.51856, -2.5873013, -63.469696, 63.469696, 3.7619047, -82.51856, -63.469696, -2.5873013, 82.51856, 19.028978, -2.5873013, -101.56742, -19.028978, 3.7619047, 101.56742, -88.86155, 3.7619047, -53.945267, -63.469696, -2.5873013, -82.51856, -101.56742, -2.5873013, -19.028978, 101.56742, 3.7619047, -19.028978)
+
 [node name="Main" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 216.49576, 21.313099, 279.62808)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 194.395, 7, 5.352)
 
 [node name="Snow" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.4, 0)
-amount = 256
+amount = 512
 lifetime = 3.5
+speed_scale = 2.0
+randomness = 1.0
 visibility_aabb = AABB(-49.550014, -65.5918, -43.5761, 96.52147, 68.53856, 101.331406)
 process_material = SubResource("ParticleProcessMaterial_tbgi4")
 draw_pass_1 = SubResource("QuadMesh_85g3d")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -2.3999999)
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.25881904, 0.9659258, 0, -0.9659258, -0.25881904, 0, 0, 0)
@@ -697,3 +721,14 @@ show_grid = true
 show_region_grid = true
 top_level = true
 metadata/_edit_lock_ = true
+
+[node name="FrozenLake" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FrozenLake"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tefeu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FrozenLake/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrozenLake/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ya4ey")

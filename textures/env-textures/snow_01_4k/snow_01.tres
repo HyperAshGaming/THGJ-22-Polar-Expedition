@@ -5,7 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://didicxp3m4mtk" path="res://textures/env-textures/snow_01_4k/snow_01_rough_4k.png" id="3_8pi0x"]
 
 [resource]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.7490196)
 albedo_texture = ExtResource("1_hbrmh")
+albedo_texture_force_srgb = true
+roughness = 0.0
 roughness_texture = ExtResource("3_8pi0x")
 normal_enabled = true
 normal_texture = ExtResource("2_twsh0")

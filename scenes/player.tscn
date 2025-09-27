@@ -11,6 +11,7 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_light_energy = 13.98
 fog_sun_scatter = 0.5
 fog_sky_affect = 0.7
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.2
 volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
 
@@ -18,6 +19,7 @@ volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
 script = ExtResource("1_3vyb7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -35,5 +37,6 @@ distance_fade_enabled = true
 distance_fade_begin = 10.0
 distance_fade_shadow = 20.0
 distance_fade_length = 5.0
+spot_range = 15.0
 spot_angle = 30.0
 spot_angle_attenuation = 1.8660665
