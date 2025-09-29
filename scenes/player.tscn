@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhokvwfnxqt33"]
+[gd_scene load_steps=9 format=3 uid="uid://dhokvwfnxqt33"]
 
 [ext_resource type="Script" uid="uid://boy4cs8o8gm2r" path="res://scripts/PlayerScript.gd" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://843jshqyf6ik" path="res://sound-effects/snow-step-1-81064.mp3" id="2_dqkch"]
+[ext_resource type="AudioStream" uid="uid://mir3fkyxrgns" path="res://sound-effects/snow-step-2-102324.mp3" id="3_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://87w776fb0g" path="res://sound-effects/snow-step-3-81065.mp3" id="4_tuyoq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
@@ -12,8 +15,11 @@ fog_light_energy = 13.98
 fog_sun_scatter = 0.5
 fog_sky_affect = 0.7
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.2
+volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
+size = Vector3(0.1, 0.1, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -40,3 +46,18 @@ distance_fade_length = 5.0
 spot_range = 15.0
 spot_angle = 30.0
 spot_angle_attenuation = 1.8660665
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/Camera"]
+visible = false
+mesh = SubResource("BoxMesh_dqkch")
+
+[node name="SoundEffects" type="Node3D" parent="."]
+
+[node name="snowStep1" type="AudioStreamPlayer3D" parent="SoundEffects"]
+stream = ExtResource("2_dqkch")
+
+[node name="snowStep2" type="AudioStreamPlayer3D" parent="SoundEffects"]
+stream = ExtResource("3_qlg0r")
+
+[node name="snowStep3" type="AudioStreamPlayer3D" parent="SoundEffects"]
+stream = ExtResource("4_tuyoq")

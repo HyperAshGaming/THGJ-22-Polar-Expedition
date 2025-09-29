@@ -648,7 +648,6 @@ _shader_parameters = {
 &"projection_threshold": 0.8
 }
 shader_override = SubResource("Shader_jyhfs")
-show_region_grid = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb6dy"]
 transparency = 4
@@ -673,7 +672,6 @@ mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_trceg")])
 texture_list = Array[Terrain3DTextureAsset]([ExtResource("6_o6xl0"), ExtResource("5_tefeu"), ExtResource("7_o6xl0")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
-transparency = 1
 albedo_color = Color(0, 1, 1, 0.7490196)
 albedo_texture = ExtResource("5_o6xl0")
 albedo_texture_force_srgb = true
@@ -684,16 +682,16 @@ normal_texture = ExtResource("6_tipki")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tefeu"]
 material = SubResource("StandardMaterial3D_choun")
-top_radius = 100.0
-bottom_radius = 100.0
+top_radius = 90.0
+bottom_radius = 90.0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ya4ey"]
-points = PackedVector3Array(19.028978, 3.7619047, 101.56742, -19.028978, -2.5873013, -101.56742, -31.734848, -2.5873013, -98.38599, -19.028978, 3.7619047, -101.56742, 101.56742, -2.5873013, -19.028978, -88.86155, -2.5873013, 53.945267, -101.56742, 3.7619047, -19.028978, 88.86155, 3.7619047, -53.945267, 63.469696, -2.5873013, 82.51856, 95.204544, 3.7619047, 41.25928, -82.51856, 3.7619047, 63.469696, -31.734848, -2.5873013, 98.38599, -88.86155, -2.5873013, -53.945267, 53.945267, -2.5873013, -88.86155, -63.469696, 3.7619047, -82.51856, 31.734848, 3.7619047, -98.38599, -101.56742, -2.5873013, 19.028978, -53.945267, 3.7619047, 88.86155, 95.204544, -2.5873013, 41.25928, 63.469696, 3.7619047, 82.51856, 19.028978, -2.5873013, 101.56742, 101.56742, 3.7619047, 19.028978, -98.38599, 3.7619047, 31.734848, 82.51856, -2.5873013, -63.469696, 63.469696, 3.7619047, -82.51856, -63.469696, -2.5873013, 82.51856, 19.028978, -2.5873013, -101.56742, -19.028978, 3.7619047, 101.56742, -88.86155, 3.7619047, -53.945267, -63.469696, -2.5873013, -82.51856, -101.56742, -2.5873013, -19.028978, 101.56742, 3.7619047, -19.028978)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o6xl0"]
+points = PackedVector3Array(17.111534, 3.2857144, 91.42857, -17.111534, -2.4285715, -91.42857, -28.549055, -2.4285715, -88.56472, -17.111534, 3.2857144, -91.42857, 91.42857, -2.4285715, -17.111534, -79.99105, -2.4285715, 48.56024, -91.42857, 3.2857144, -17.111534, 79.99105, 3.2857144, -48.56024, 57.11601, -2.4285715, 74.28124, 85.68296, 3.2857144, 37.14062, -74.28124, 3.2857144, 57.11601, -28.549055, -2.4285715, 88.56472, -79.99105, -2.4285715, -48.56024, 48.56024, -2.4285715, -79.99105, -57.11601, 3.2857144, -74.28124, 28.549055, 3.2857144, -88.56472, -91.42857, -2.4285715, 17.111534, -48.56024, 3.2857144, 79.99105, 85.68296, -2.4285715, 37.14062, 57.11601, 3.2857144, 74.28124, 17.111534, -2.4285715, 91.42857, 91.42857, 3.2857144, 17.111534, -88.56472, 3.2857144, 28.549055, 74.28124, -2.4285715, -57.11601, 57.11601, 3.2857144, -74.28124, -57.11601, -2.4285715, 74.28124, 17.111534, -2.4285715, -91.42857, -17.111534, 3.2857144, 91.42857, -79.99105, 3.2857144, -48.56024, -57.11601, -2.4285715, -74.28124, -91.42857, -2.4285715, -17.111534, 91.42857, 3.2857144, -17.111534)
 
 [node name="Main" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 194.395, 7, 5.352)
+transform = Transform3D(-8.7422784e-08, 0, 2.0000002, 0, 2, 0, -2.0000002, 0, -8.7422784e-08, 192, 7, 0)
 
 [node name="Snow" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.4, 0)
@@ -717,8 +715,6 @@ visible = false
 data_directory = "res://terrain-3d-data-dir"
 material = SubResource("Terrain3DMaterial_ya4ey")
 assets = SubResource("Terrain3DAssets_a8y0u")
-show_grid = true
-show_region_grid = true
 top_level = true
 metadata/_edit_lock_ = true
 
@@ -728,7 +724,19 @@ metadata/_edit_lock_ = true
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_tefeu")
 
+[node name="Area3D" type="Area3D" parent="FrozenLake/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrozenLake/MeshInstance3D/Area3D"]
+transform = Transform3D(0.975, 0, 0, 0, 0.975, 0, 0, 0, 0.975, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_o6xl0")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="FrozenLake/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FrozenLake/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ya4ey")
+shape = SubResource("ConvexPolygonShape3D_o6xl0")
+
+[connection signal="body_entered" from="FrozenLake/MeshInstance3D/Area3D" to="Player" method="_change_to_ice_steps"]
+[connection signal="body_exited" from="FrozenLake/MeshInstance3D/Area3D" to="Player" method="_change_to_snow_steps"]
