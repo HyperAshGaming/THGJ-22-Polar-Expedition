@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 5
+var SPEED = 5
 const JUMP_VELOCITY = 4.5
 
 const SENSITIVITY = .00075;
@@ -20,6 +20,7 @@ var snowIteration = 0
 var footstepAllow = true
 
 func _unhandled_input(event):
+	# print(get_viewport().debug_draw)
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif event.is_action_pressed("ui_cancel"):
@@ -29,8 +30,14 @@ func _unhandled_input(event):
 			self.rotate_y(-event.relative.x * SENSITIVITY)
 			Camera.rotate_x(-event.relative.y * SENSITIVITY)
 			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+	
+	if event.is_action_pressed("run"):
+		SPEED = 15;
+	elif event.is_action_released("run"):
+		SPEED = 5;
 
 func _ready():
+	# get_viewport().debug_draw = Viewport.DEBUG_DRAW_DISABLED
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	snowList = [snowStep1, snowStep2, snowStep3]
 	for sound in snowList:
@@ -95,4 +102,3 @@ func _change_to_ice_steps(body: Node3D):
 
 #git reset --hard HEAD
 #git pull
-
