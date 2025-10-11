@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var nav_agent = $enemyNavAgent
 @onready var player = get_node("/root/Main/Player")
 
-var SPEED = 5.0
+var SPEED = 7.5
 var NewTargetAllowed = true
 
 var radius = 1
@@ -17,12 +17,12 @@ func _physics_process(_delta):
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	velocity = new_velocity
 	update_target_player(player.transform.origin)
-	print(nav_agent.target_position, player.transform.origin, transform.origin)
+	# print(nav_agent.target_position, player.transform.origin, transform.origin)
 	# set_navigation_map
 	move_and_slide()
 	
 func enemy_wander(wander_location):
-	SPEED = 100.0
+	# SPEED = 100.0
 	nav_agent.target_position = wander_location
 
 func update_target_player(target_location):
@@ -33,5 +33,5 @@ func update_target_player(target_location):
 
 
 func _reached_target():
-	SPEED = 50.0
+	# SPEED = 50.0
 	print("target reached")
