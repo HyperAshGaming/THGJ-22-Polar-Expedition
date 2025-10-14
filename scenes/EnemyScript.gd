@@ -8,6 +8,10 @@ var NewTargetAllowed = true
 
 var radius = 1
 
+func _ready() -> void:
+	get_parent().transform.origin = Vector3(131.0, 7.0, 744.0)
+	print("ready!")
+
 func _physics_process(_delta):
 	
 	# SPEED = 100.0
@@ -35,3 +39,7 @@ func update_target_player(target_location):
 func _reached_target():
 	# SPEED = 50.0
 	print("target reached")
+
+
+func _player_click(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	queue_free()

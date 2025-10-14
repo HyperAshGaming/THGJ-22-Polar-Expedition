@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://14x51xbu0qmh"]
+
+[ext_resource type="Script" uid="uid://bcxk8qkx3d40w" path="res://scenes/EnemyScript.gd" id="1_rjfsf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_choun"]
+size = Vector3(2, 2, 2)
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_rjfsf")
+
+[node name="enemyNavAgent" type="NavigationAgent3D" parent="."]
+target_desired_distance = 4.0
+path_height_offset = -2.0
+avoidance_enabled = true
+radius = 0.01
+use_3d_avoidance = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+debug_path_custom_point_size = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tipki")
+debug_color = Color(17.425966, 0, 9.43355, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_choun")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_tipki")
+debug_color = Color(17.425966, 0, 9.43355, 1)
+
+[connection signal="target_reached" from="enemyNavAgent" to="." method="_reached_target"]
+[connection signal="input_event" from="Area3D" to="." method="_player_click"]
