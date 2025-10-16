@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var nav_agent = $enemyNavAgent
 @onready var player = get_node("/root/Main/Player")
+@onready var lookHands = $lookNode
 
 var SPEED = 7.5
 var NewTargetAllowed = true
@@ -9,7 +10,7 @@ var NewTargetAllowed = true
 var radius = 1
 
 func _ready() -> void:
-	get_parent().transform.origin = Vector3(131.0, 7.0, 744.0)
+	transform.origin = Vector3(131.0, 7.0, 744.0)
 	print("ready!")
 
 func _physics_process(_delta):
@@ -21,6 +22,7 @@ func _physics_process(_delta):
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	velocity = new_velocity
 	update_target_player(player.transform.origin)
+	lookHands.look_at(player.transform.origin, Vector3.UP)
 	# print(nav_agent.target_position, player.transform.origin, transform.origin)
 	# set_navigation_map
 	move_and_slide()
@@ -41,5 +43,14 @@ func _reached_target():
 	print("target reached")
 
 
-func _player_click(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	queue_free()
+func _player_click(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	# print("test")
+	if Input.is_action_just_pressed("mouse1"):
+		print("mouse 1 down")
+		queue_free()
+
+func _player_area_entered(area: Area3D) -> void:
+	print(area.name)
+	if area.name == "playerArea":
+		print("deleteing")
+		queue_free()

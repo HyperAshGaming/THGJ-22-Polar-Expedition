@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://14x51xbu0qmh"]
+[gd_scene load_steps=8 format=3 uid="uid://14x51xbu0qmh"]
 
 [ext_resource type="Script" uid="uid://bcxk8qkx3d40w" path="res://scenes/EnemyScript.gd" id="1_rjfsf"]
 
@@ -7,6 +7,18 @@ size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_choun"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rjfsf"]
+size = Vector3(1, 1, 0.175)
+
+[sub_resource type="BoxMesh" id="BoxMesh_act2j"]
+size = Vector3(0.25, 0.5, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tbaml"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uo63i"]
+size = Vector3(0.25, 1, 0.25)
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_rjfsf")
@@ -35,5 +47,94 @@ mesh = SubResource("BoxMesh_choun")
 shape = SubResource("BoxShape3D_tipki")
 debug_color = Color(17.425966, 0, 9.43355, 1)
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="lookNode" type="Node3D" parent="."]
+
+[node name="handsNode" type="Node3D" parent="lookNode"]
+
+[node name="rightHand" type="MeshInstance3D" parent="lookNode/handsNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+mesh = SubResource("BoxMesh_rjfsf")
+skeleton = NodePath("../..")
+
+[node name="middleR" type="MeshInstance3D" parent="lookNode/handsNode/rightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/middleR"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/middleR/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
+[node name="rightR" type="MeshInstance3D" parent="lookNode/handsNode/rightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/rightR"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/rightR/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
+[node name="leftR" type="MeshInstance3D" parent="lookNode/handsNode/rightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/leftR"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/rightHand/leftR/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
+[node name="leftHand" type="MeshInstance3D" parent="lookNode/handsNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+mesh = SubResource("BoxMesh_rjfsf")
+skeleton = NodePath("../..")
+
+[node name="middleL" type="MeshInstance3D" parent="lookNode/handsNode/leftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/middleL"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/middleL/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
+[node name="rightL" type="MeshInstance3D" parent="lookNode/handsNode/leftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/rightL"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/rightL/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
+[node name="leftL" type="MeshInstance3D" parent="lookNode/handsNode/leftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0.75, 0)
+mesh = SubResource("BoxMesh_act2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/leftL"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_tbaml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/leftL/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_uo63i")
+
 [connection signal="target_reached" from="enemyNavAgent" to="." method="_reached_target"]
+[connection signal="area_entered" from="Area3D" to="." method="_player_area_entered"]
 [connection signal="input_event" from="Area3D" to="." method="_player_click"]

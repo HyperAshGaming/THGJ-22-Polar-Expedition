@@ -22,10 +22,10 @@ var footstepAllow = true
 func _unhandled_input(event):
 	# print(get_viewport().debug_draw)
 	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			self.rotate_y(-event.relative.x * SENSITIVITY)
 			Camera.rotate_x(-event.relative.y * SENSITIVITY)

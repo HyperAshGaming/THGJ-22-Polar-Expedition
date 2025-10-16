@@ -4,8 +4,8 @@ extends Node3D
 
 func _ready():
     # var player = get_children()[0]
-	var enemyChild = enemy.instantiate()
 	for i in range(1,5,1):
+		var enemyChild = enemy.instantiate()
 		await get_tree().create_timer(1.5).timeout
 		add_child(enemyChild)
 
