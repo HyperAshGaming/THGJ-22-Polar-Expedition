@@ -1,8 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://7of1ajkbel50"]
+[gd_scene load_steps=30 format=3 uid="uid://7of1ajkbel50"]
 
 [ext_resource type="Script" uid="uid://dfqnwha20e4rw" path="res://scenes/main.gd" id="1_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dhokvwfnxqt33" path="res://scenes/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://14x51xbu0qmh" path="res://scenes/cave_enemy.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cm11iwkl2liaq" path="res://textures/env-textures/snow_01_4k/snow_01_diff_4k.png" id="5_o6xl0"]
 [ext_resource type="Terrain3DTextureAsset" uid="uid://bgwrkfhgavjyn" path="res://textures/env-textures/snow_01_4k/terrain_3d_snow_01.tres" id="5_tefeu"]
 [ext_resource type="Terrain3DTextureAsset" uid="uid://b5otscwsdxrfw" path="res://textures/env-textures/snow_02_4k/terrain_3d_snow_02.tres" id="6_o6xl0"]
@@ -710,9 +709,6 @@ randomness = 1.0
 visibility_aabb = AABB(-49.550014, -65.5918, -43.5761, 96.52147, 68.53856, 101.331406)
 process_material = SubResource("ParticleProcessMaterial_tbgi4")
 draw_pass_1 = SubResource("QuadMesh_85g3d")
-
-[node name="Enemy" parent="." instance=ExtResource("2_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131, 7, 744)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -2.3999999)

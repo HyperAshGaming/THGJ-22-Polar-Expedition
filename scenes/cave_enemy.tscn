@@ -20,7 +20,7 @@ size = Vector3(0.25, 0.25, 0.25)
 [sub_resource type="BoxMesh" id="BoxMesh_uo63i"]
 size = Vector3(0.25, 1, 0.25)
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["caveEnemyGroup"]]
 script = ExtResource("1_rjfsf")
 
 [node name="enemyNavAgent" type="NavigationAgent3D" parent="."]
@@ -47,7 +47,10 @@ mesh = SubResource("BoxMesh_choun")
 shape = SubResource("BoxShape3D_tipki")
 debug_color = Color(17.425966, 0, 9.43355, 1)
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="visionRaycast" type="RayCast3D" parent="."]
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 1, 1, 1)
+debug_shape_thickness = 5
 
 [node name="lookNode" type="Node3D" parent="."]
 
@@ -137,4 +140,3 @@ mesh = SubResource("BoxMesh_uo63i")
 
 [connection signal="target_reached" from="enemyNavAgent" to="." method="_reached_target"]
 [connection signal="area_entered" from="Area3D" to="." method="_player_area_entered"]
-[connection signal="input_event" from="Area3D" to="." method="_player_click"]

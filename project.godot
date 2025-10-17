@@ -27,6 +27,11 @@ project/assembly_name="Themed Horror Game Jam 22 Polar Expedition"
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
+[global_group]
+
+playerGroup=""
+caveEnemyGroup=""
+
 [input]
 
 w={

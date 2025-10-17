@@ -19,6 +19,8 @@ var snowList = []
 var snowIteration = 0
 var footstepAllow = true
 
+var mouse1Down = false
+
 func _unhandled_input(event):
 	# print(get_viewport().debug_draw)
 	if event is InputEventMouseButton:
@@ -35,6 +37,11 @@ func _unhandled_input(event):
 		SPEED = 15;
 	elif event.is_action_released("run"):
 		SPEED = 5;
+	
+	if event.is_action_pressed("mouse1"):
+		mouse1Down = true
+	elif event.is_action_released("mouse1"):
+		mouse1Down = false
 
 func _ready():
 	# get_viewport().debug_draw = Viewport.DEBUG_DRAW_DISABLED
@@ -99,6 +106,9 @@ func _change_to_ice_steps(body: Node3D):
 	if body.name == "Player":
 		for sound in snowList:
 			sound.pitch_scale = 3.0
+
+func _get_mouse1Down():
+	return mouse1Down
 
 #git reset --hard HEAD
 #git pull

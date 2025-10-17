@@ -4,12 +4,10 @@ extends Node3D
 
 func _ready():
     # var player = get_children()[0]
-	for i in range(1,5,1):
-		var enemyChild = enemy.instantiate()
-		await get_tree().create_timer(1.5).timeout
-		add_child(enemyChild)
+	_spawn_enemy()
+	# pass
 
-# func enemyFunc(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int):
-#     print("test")
-
-#     print("got got")
+func _spawn_enemy():
+	var enemyChild = enemy.instantiate()
+	await get_tree().create_timer(randi_range(2,5)).timeout
+	add_child(enemyChild)
