@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dknclvsh060am"]
+
+[ext_resource type="Script" uid="uid://ghkifbbgbbci" path="res://scripts/itemScript.gd" id="1_lkaa1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nnxok"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h3kvc"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.5
+cap_top = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wm4p2"]
+flip_faces = true
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.5
+cap_top = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lkaa1"]
+size = Vector3(1.5, 3, 1.5)
+
+[node name="Flashlight" type="Node3D"]
+script = ExtResource("1_lkaa1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_nnxok")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_h3kvc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_wm4p2")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_lkaa1")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="input_event" from="Area3D" to="." method="_remove_self"]

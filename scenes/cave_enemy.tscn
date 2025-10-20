@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://14x51xbu0qmh"]
+[gd_scene load_steps=9 format=3 uid="uid://14x51xbu0qmh"]
 
-[ext_resource type="Script" uid="uid://bcxk8qkx3d40w" path="res://scenes/EnemyScript.gd" id="1_rjfsf"]
+[ext_resource type="Script" uid="uid://bcxk8qkx3d40w" path="res://scripts/EnemyScript.gd" id="1_rjfsf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(2, 2, 2)
@@ -19,6 +19,9 @@ size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uo63i"]
 size = Vector3(0.25, 1, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjfsf"]
+size = Vector3(200, 25, 200)
 
 [node name="Enemy" type="CharacterBody3D" groups=["caveEnemyGroup"]]
 script = ExtResource("1_rjfsf")
@@ -48,6 +51,7 @@ shape = SubResource("BoxShape3D_tipki")
 debug_color = Color(17.425966, 0, 9.43355, 1)
 
 [node name="visionRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 0)
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 1, 1, 1)
 debug_shape_thickness = 5
@@ -137,6 +141,12 @@ mesh = SubResource("BoxMesh_tbaml")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="lookNode/handsNode/leftHand/leftL/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.375, 0)
 mesh = SubResource("BoxMesh_uo63i")
+
+[node name="VisionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea"]
+shape = SubResource("BoxShape3D_rjfsf")
+debug_color = Color(0.78431374, 0.41568628, 0.36862746, 1)
 
 [connection signal="target_reached" from="enemyNavAgent" to="." method="_reached_target"]
 [connection signal="area_entered" from="Area3D" to="." method="_player_area_entered"]

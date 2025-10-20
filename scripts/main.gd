@@ -4,8 +4,8 @@ extends Node3D
 
 func _ready():
     # var player = get_children()[0]
-	_spawn_enemy()
-	# pass
+	# _spawn_enemy()
+	pass
 
 func _spawn_enemy():
 	var enemyChild = enemy.instantiate()
