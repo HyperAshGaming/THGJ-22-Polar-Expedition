@@ -21,6 +21,8 @@ var footstepAllow = true
 
 var mouse1Down = false
 
+var itemCounter = 0
+
 func _unhandled_input(event):
 	# print(get_viewport().debug_draw)
 	if event is InputEventMouseButton:
@@ -109,6 +111,10 @@ func _change_to_ice_steps(body: Node3D):
 
 func _get_mouse1Down():
 	return mouse1Down
+
+func _increaseItemCounter():
+	itemCounter += 1;
+	print(itemCounter)
 
 #git reset --hard HEAD
 #git pull

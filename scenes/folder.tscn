@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cba3sra6tqrdg"]
+
+[ext_resource type="Script" uid="uid://ghkifbbgbbci" path="res://scripts/itemScript.gd" id="1_cgaqj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffggn"]
+size = Vector3(0.35, 0.1, 0.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgaqj"]
+size = Vector3(0.5, 0.2, 0.85)
+
+[node name="Folder" type="Node3D"]
+script = ExtResource("1_cgaqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ffggn")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cgaqj")
+
+[connection signal="area_entered" from="Area3D" to="." method="_remove_self"]

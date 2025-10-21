@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bcxk8qkx3d40w" path="res://scripts/EnemyScript.gd" id="1_rjfsf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_choun"]
 size = Vector3(2, 2, 2)
@@ -27,7 +26,7 @@ size = Vector3(200, 25, 200)
 script = ExtResource("1_rjfsf")
 
 [node name="enemyNavAgent" type="NavigationAgent3D" parent="."]
-target_desired_distance = 4.0
+target_desired_distance = 3.0
 path_height_offset = -2.0
 avoidance_enabled = true
 radius = 0.01

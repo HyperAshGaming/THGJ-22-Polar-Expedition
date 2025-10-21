@@ -10,17 +10,20 @@ extends CharacterBody3D
 var SPEED = 7.5
 var newTargetAllowed = true
 var wanderActive = false
-
+var y_pos = 2.5
 var radius = 1
 # var mouse1Down = false
 
-var positionList = [Vector3(46.0, 0.0, 744.0), Vector3(131.0, 0.0, 744.0), Vector3(66.0, 0.0, 816.0), Vector3(102.0, 0.0, 682.0), Vector3(100.0, 0.0, 733.0)]
+var positionList = [Vector3(46.0, y_pos, 744.0), Vector3(130.0, y_pos, 746.0), Vector3(66.0, y_pos, 816.0), Vector3(102.0, y_pos, 682.0), Vector3(100.0, y_pos, 733.0)]
 
 func _ready() -> void:
 	transform.origin = positionList.pick_random()
 	#print("ready! --------------")
 
 func _physics_process(_delta):
+	# self.transform.origin = Vector3(46.0, 0.0, 744.0)
+	SPEED = 25.0
+	# nav_agent.target_position = Vector3(130.0, y_pos, 746.0)
 	var overlaps = visionArea.get_overlapping_areas()
 	if overlaps.size() > 0:
 		for overlap in overlaps:
@@ -30,9 +33,10 @@ func _physics_process(_delta):
 				raycast.force_raycast_update()
 				if raycast.is_colliding():
 					var collider = raycast.get_collider()
+					#print(collider.name)
 					if collider.name == "playerArea":
 						update_target(player.transform.origin)
-						#print("chasing")
+						# print("chasing")
 						newTargetAllowed = false
 					elif collider.name != "playerArea":
 						if newTargetAllowed == true:
@@ -50,7 +54,7 @@ func _physics_process(_delta):
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	velocity = new_velocity
-	#print(nav_agent.target_position, wanderActive, "++++")
+	#print(nav_agent.target_position, wanderActive, "++++", transform.origin)
 	# update_target(Vector3(66.0, 0.0, 816.0))
 	look_at(player.transform.origin, Vector3.UP)
 	#print(newTargetAllowed, "===============================================================")
@@ -71,16 +75,13 @@ func update_target(target_location):
 	nav_agent.target_position = target_location
 
 func _reached_target():
-	#print("target reached")
+	print("target reached")
 	wanderActive = false
 	newTargetAllowed = true
 
 func _player_area_entered(area: Area3D) -> void:
-	#print(area.name)
 	var mouse1Down = player._get_mouse1Down()
-	#print(mouse1Down)
 	if area.name == "playerArea" and mouse1Down == true:
-		#print("deleteing")
 		main._spawn_enemy()
 		queue_free()
 

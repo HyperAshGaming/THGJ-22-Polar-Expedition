@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://17020oh18ewi"]
+
+[ext_resource type="Script" uid="uid://ghkifbbgbbci" path="res://scripts/itemScript.gd" id="1_4xfga"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xfga"]
+albedo_color = Color(0.2548042, 0.19076586, 0.13657397, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hrmi8"]
+size = Vector3(0.5, 0.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrmi8"]
+size = Vector3(0.75, 0.2, 0.75)
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_4xfga")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4xfga")
+mesh = SubResource("BoxMesh_hrmi8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_hrmi8")
+
+[connection signal="area_entered" from="Area3D" to="." method="_remove_self"]
