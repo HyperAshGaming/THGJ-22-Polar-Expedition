@@ -9,10 +9,11 @@ var vL = [Vector3(92.0, y_pos, 654.0), Vector3(180.0, y_pos, 588.0), Vector3(43.
 @onready var camera = preload("res://scenes/cameraItem.tscn")
 @onready var folder = preload("res://scenes/folder.tscn")
 @onready var backpack = preload("res://scenes/backpack.tscn")
+@onready var locator = preload("res://scenes/locator.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var itemList = [camera, backpack]
+	var itemList = [camera, backpack, locator]
 	for item in itemList:
 		var itemChild = item.instantiate()
 		var itemPos = randi_range(0, len(vL) - 1)

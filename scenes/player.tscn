@@ -9,11 +9,14 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
-[sub_resource type="Environment" id="Environment_dqkch"]
-fog_enabled = true
-fog_light_color = Color(0.22126845, 0.24273458, 0.27851343, 1)
-fog_height = -5.0
-fog_height_density = -0.05
+[sub_resource type="Environment" id="Environment_3vyb7"]
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 13.98
+fog_sun_scatter = 0.5
+fog_sky_affect = 0.7
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.3180198, 0.31801978, 0.31801975, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqkch"]
 size = Vector3(0.1, 0.1, 15)
@@ -35,9 +38,10 @@ debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Camera" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.3)
-environment = SubResource("Environment_dqkch")
+environment = SubResource("Environment_3vyb7")
 
 [node name="playerArea" type="Area3D" parent="Neck/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="playerCollision" type="CollisionShape3D" parent="Neck/Camera/playerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.25)

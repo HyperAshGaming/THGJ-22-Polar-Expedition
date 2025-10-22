@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs71ah47hy1ur"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tubq2"]
+size = Vector3(3.25, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ivgs"]
+size = Vector3(0.1, 2.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w5yki"]
+size = Vector3(2.75, 2.5, 0.1)
+
+[node name="Truck" type="Node3D"]
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls"]
+mesh = SubResource("BoxMesh_tubq2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.375, 0)
+mesh = SubResource("BoxMesh_tubq2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3125, 1.1875, 0)
+mesh = SubResource("BoxMesh_8ivgs")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3125, 1.1875, 0)
+mesh = SubResource("BoxMesh_8ivgs")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 2.5)
+mesh = SubResource("BoxMesh_w5yki")
+skeleton = NodePath("../..")
+
+[node name="Slide" type="Node3D" parent="."]
