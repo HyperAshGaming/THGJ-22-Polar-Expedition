@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://7of1ajkbel50"]
+[gd_scene load_steps=34 format=3 uid="uid://7of1ajkbel50"]
 
 [ext_resource type="Script" uid="uid://dfqnwha20e4rw" path="res://scripts/main.gd" id="1_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dhokvwfnxqt33" path="res://scenes/player.tscn" id="1_ig7tw"]
@@ -10,7 +10,6 @@
 [ext_resource type="Terrain3DTextureAsset" uid="uid://dhkhddq6ihtrm" path="res://textures/env-textures/snow_03_4k/terrain_3d_snow_03.tres" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://gghp0wa6kvvo" path="res://scripts/itemManagerScript.gd" id="9_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dknclvsh060am" path="res://scenes/flashlight.tscn" id="10_choun"]
-[ext_resource type="PackedScene" uid="uid://bs71ah47hy1ur" path="res://scenes/truck.tscn" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://17020oh18ewi" path="res://scenes/map.tscn" id="13_jbj1t"]
 
 [sub_resource type="Gradient" id="Gradient_o5qli"]
@@ -708,7 +707,7 @@ texture_list = Array[Terrain3DTextureAsset]([ExtResource("6_o6xl0"), ExtResource
 script = ExtResource("1_85g3d")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(-8.7422784e-08, 0, 2.0000002, 0, 2, 0, -2.0000002, 0, -8.7422784e-08, 86, 7, 821)
+transform = Transform3D(-8.7422784e-08, 0, 2.0000002, 0, 2, 0, -2.0000002, 0, -8.7422784e-08, 82.5, 3, 818)
 
 [node name="Snow" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.4, 0)
@@ -773,9 +772,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155, 2.25, 788)
 visible = false
 mesh = SubResource("BoxMesh_85g3d")
 skeleton = NodePath("../..")
-
-[node name="Truck" parent="." instance=ExtResource("12_eb6dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -472)
 
 [connection signal="body_entered" from="FrozenLake/MeshInstance3D/Area3D" to="Player" method="_change_to_ice_steps"]
 [connection signal="body_exited" from="FrozenLake/MeshInstance3D/Area3D" to="Player" method="_change_to_snow_steps"]

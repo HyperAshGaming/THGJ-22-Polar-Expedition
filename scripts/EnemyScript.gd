@@ -12,6 +12,7 @@ var newTargetAllowed = true
 var wanderActive = false
 var y_pos = 2.5
 var radius = 1
+var lookingAt = false
 # var mouse1Down = false
 
 var positionList = [Vector3(46.0, y_pos, 744.0), Vector3(130.0, y_pos, 746.0), Vector3(66.0, y_pos, 816.0), Vector3(102.0, y_pos, 682.0), Vector3(100.0, y_pos, 733.0)]
@@ -21,8 +22,13 @@ func _ready() -> void:
 	#print("ready! --------------")
 
 func _physics_process(_delta):
+	if lookingAt == true:
+		var mouse1Down = player._get_mouse1Down()
+		if mouse1Down == true:
+			main._spawn_enemy()
+			queue_free()
 	# self.transform.origin = Vector3(46.0, 0.0, 744.0)
-	SPEED = 25.0
+	# SPEED = 25.0
 	# nav_agent.target_position = Vector3(130.0, y_pos, 746.0)
 	var overlaps = visionArea.get_overlapping_areas()
 	if overlaps.size() > 0:
@@ -80,13 +86,17 @@ func _reached_target():
 	newTargetAllowed = true
 
 func _player_area_entered(area: Area3D) -> void:
-	var mouse1Down = player._get_mouse1Down()
-	if area.name == "playerArea" and mouse1Down == true:
-		main._spawn_enemy()
-		queue_free()
+	if area.name == "playerArea":
+		lookingAt = false
+
+func _player_area_exited(area: Area3D):
+	if area.name == "playerArea":
+		lookingAt = false
 
 func _wander():
 	update_target(positionList.pick_random())
+
+
 
 #when sees player, disallows wander until player is out of sight again + 2 seconds
 #wander goes to random position on map

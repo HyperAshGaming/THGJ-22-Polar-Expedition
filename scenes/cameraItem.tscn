@@ -23,5 +23,5 @@ mesh = SubResource("BoxMesh_hr8my")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_t5psj")
 
-[connection signal="area_entered" from="Area3D" to="." method="_remove_self"]
-[connection signal="input_event" from="Area3D" to="." method="_remove_self_test"]
+[connection signal="area_entered" from="Area3D" to="." method="_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_area_exited"]

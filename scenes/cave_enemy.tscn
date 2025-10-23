@@ -149,3 +149,4 @@ debug_color = Color(0.78431374, 0.41568628, 0.36862746, 1)
 
 [connection signal="target_reached" from="enemyNavAgent" to="." method="_reached_target"]
 [connection signal="area_entered" from="Area3D" to="." method="_player_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_player_area_exited"]
