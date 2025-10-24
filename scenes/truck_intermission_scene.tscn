@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxicq2byald43"]
+[gd_scene load_steps=16 format=3 uid="uid://dxicq2byald43"]
 
 [ext_resource type="PackedScene" uid="uid://bs71ah47hy1ur" path="res://scenes/truck.tscn" id="1_pu8j8"]
+[ext_resource type="Script" uid="uid://d00okl0h6mdh5" path="res://scripts/truckIntermissionScript.gd" id="1_xy0fb"]
 [ext_resource type="Script" uid="uid://6dn55f5kgy3y" path="res://scripts/playerTruckScript.gd" id="2_xy0fb"]
+[ext_resource type="Script" uid="uid://bxrfwrnfbj2bc" path="res://scripts/truckItemScript.gd" id="4_0yg7l"]
+[ext_resource type="Texture2D" uid="uid://cf0ev6v1r1ylk" path="res://textures/cave_map_texture_png.png" id="4_lt6fl"]
 
 [sub_resource type="Environment" id="Environment_pu8j8"]
 fog_light_color = Color(0, 0, 0, 1)
@@ -20,29 +23,95 @@ size = Vector3(0.1, 0.1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0yg7l"]
 
+[sub_resource type="Animation" id="Animation_pu8j8"]
+resource_name = "itemsOutAnimation"
+length = 0.125
+step = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3.875, 5.875, 0.125, 1, 0.75, 2.75, 5.625)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.92387956, 0, 0, 0.38268343, 0.125, 1, 0, 0, 0, 0.99999994)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Map")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 3.875, 5.875, 0.125, 1, -0.75, 2.75, 5.625)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Map")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.9238795, 0, 0, -0.3826834, 0.125, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_xy0fb"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 3.875, 5.875)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Map")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 3.875, 5.875)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xy0fb"]
+_data = {
+&"RESET": SubResource("Animation_xy0fb"),
+&"itemsOutAnimation": SubResource("Animation_pu8j8")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_0yg7l"]
+size = Vector3(0.5, 0.05, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lt6fl"]
+size = Vector3(0.55, 0.075, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0yg7l"]
+size = Vector3(1, 0.075, 0.75)
+
 [node name="TruckIntermissionScene" type="Node3D"]
+script = ExtResource("1_xy0fb")
 
 [node name="Truck" parent="." instance=ExtResource("1_pu8j8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
-[node name="playerTruck" type="CharacterBody3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.560671, 0)
+[node name="PlayerTruck" type="CharacterBody3D" parent="."]
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, 0, 2.560671, 0)
 script = ExtResource("2_xy0fb")
 
-[node name="Neck" type="Node3D" parent="playerTruck"]
+[node name="Neck" type="Node3D" parent="PlayerTruck"]
 
-[node name="Camera" type="Camera3D" parent="playerTruck/Neck"]
+[node name="Camera" type="Camera3D" parent="PlayerTruck/Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.3)
 environment = SubResource("Environment_pu8j8")
 
-[node name="playerArea" type="Area3D" parent="playerTruck/Neck/Camera"]
+[node name="playerArea" type="Area3D" parent="PlayerTruck/Neck/Camera"]
 
-[node name="playerCollision" type="CollisionShape3D" parent="playerTruck/Neck/Camera/playerArea"]
+[node name="playerCollision" type="CollisionShape3D" parent="PlayerTruck/Neck/Camera/playerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.25)
 shape = SubResource("BoxShape3D_xy0fb")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="playerTruck/Neck/Camera"]
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerTruck/Neck/Camera"]
 shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 10.0
@@ -52,10 +121,50 @@ spot_range = 15.0
 spot_angle = 30.0
 spot_angle_attenuation = 1.8660665
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="playerTruck/Neck/Camera"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerTruck/Neck/Camera"]
 visible = false
 mesh = SubResource("BoxMesh_lt6fl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="playerTruck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerTruck"]
 shape = SubResource("CapsuleShape3D_0yg7l")
 debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="TruckAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xy0fb")
+}
+
+[node name="Instructions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.7071067, -0.7071067, 0, 0.7071067, -0.7071067, 0, 3.875, 5.875)
+script = ExtResource("4_0yg7l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Instructions"]
+mesh = SubResource("BoxMesh_0yg7l")
+
+[node name="InstructionsArea" type="Area3D" parent="Instructions"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Instructions/InstructionsArea"]
+shape = SubResource("BoxShape3D_lt6fl")
+
+[node name="Map" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.7071067, 0.7071067, 0, -0.7071067, -0.7071067, 0, 3.875, 5.875)
+script = ExtResource("4_0yg7l")
+
+[node name="Sprite3D" type="Sprite3D" parent="Map"]
+transform = Transform3D(1.25, 0, 0, 0, -5.4639237e-08, 1.25, 0, -1.25, -5.4639237e-08, 0, 0, 0)
+pixel_size = 0.0008
+texture = ExtResource("4_lt6fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map"]
+visible = false
+mesh = SubResource("BoxMesh_0yg7l")
+
+[node name="MapArea" type="Area3D" parent="Map"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapArea"]
+shape = SubResource("BoxShape3D_0yg7l")
+
+[connection signal="area_entered" from="Instructions/InstructionsArea" to="Instructions" method="_area_entered"]
+[connection signal="area_exited" from="Instructions/InstructionsArea" to="Instructions" method="_area_exited"]
+[connection signal="area_entered" from="Map/MapArea" to="Map" method="_area_entered"]
+[connection signal="area_exited" from="Map/MapArea" to="Map" method="_area_exited"]

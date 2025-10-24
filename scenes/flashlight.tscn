@@ -41,4 +41,3 @@ shape = SubResource("BoxShape3D_lkaa1")
 
 [connection signal="area_entered" from="Area3D" to="." method="_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_area_exited"]
-[connection signal="input_event" from="Area3D" to="." method="_remove_self_test"]

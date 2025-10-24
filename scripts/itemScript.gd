@@ -42,11 +42,6 @@ func _headbob(time) -> Vector3:
 
 
 
-func _remove_self_test(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	var mouse1Down = player._get_mouse1Down()
-
-
-
 
 # func _area_exited(area: Area3D) -> void:
 # 	pass # Replace with function body.

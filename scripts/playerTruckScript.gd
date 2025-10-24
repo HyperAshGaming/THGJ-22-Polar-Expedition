@@ -75,12 +75,14 @@ func _physics_process(delta):
 
 	return BOB_AMP
 
-
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+func _get_mouse1Down():
+	return mouse1Down
 
 func _truckFootsteps():
 	pass
